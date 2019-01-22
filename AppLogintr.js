@@ -1,28 +1,46 @@
 var app = angular.module('LoginApp', []);
 
-app.controller('ctrlLogin', function($scope)
+app.controller('ctrlLogin', function($scope,$http)
 {    
     
     $scope.mostrarLogin = true;
     $scope.mostrarError = false;
     $scope.mensaje = "";
-    $scope.modelRut= "";
     $scope.modelPass="";
+    $scope.modelRut="";
+
+
 
     $scope.iniciarSesion = function(){
 
         
-        if( $scope.modelRut == "12.345.678-9" &&  $scope.modelPass=="123456" ){
-            $scope.mostrarError = false;
-            $scope.mostrarLogin = false;
-        }
-        else if($scope.modelRut=="" || $scope.modelPass==""){
-            $scope.mostrarError = true;
+        if($scope.modelRut=="" || $scope.modelPass==""){
+            $scope.mostrarError=true;
             $scope.mensaje = "Ingrese datos";
             
-        }else{
-            $scope.mostrarError = true;
-            $scope.mensaje = "Usuario y/o Clave incorrectos";
+        }
+        else{
+            var user=({ 
+                rutEmpleado:$scope.modelRut, 
+                password:$scope.modelPass 
+            });
+            $http({
+                method:'POST', 
+                url:"http://localhost:8080/empleados/login",
+                data:user})
+                .then(function(respuesta){
+                if(respuesta.data /*y rol ==1*/ ){
+                    //Abrir ventana admin
+                    window.location.href="http:google.cl";
+                }else if(respuesta.data/*y rol=2 */){
+                    //Abrir ventada vendedor
+                }
+                else{
+                    $scope.mostrarError=true;
+                    $scope.mensaje="Rut o clave incorrectos";
+                }
+            })
+        
         }
     };
 });

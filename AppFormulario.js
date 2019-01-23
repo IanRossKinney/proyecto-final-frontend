@@ -27,11 +27,11 @@ app.controller('ctrlRegistro', function($scope,$http)
         if($scope.rut == ""|| $scope.nombre==""||$scope.apellido==""||$scope.email==""||$scope.password==""||$scope.password2==""||$scope.telefono==""){
             $scope.mostrarError=true;
             $scope.mensaje="Ingrese todos los campos requeridos";
-            console.log("Error 1")
+            console.log("Error Campos")
         }else if($scope.password != $scope.password2){
             $scope.mostrarError=true;
             $scope.mensaje="Las contraseñas no coinciden";
-            console.log("Error 2")
+            console.log("Error Claves")
         }
         else{
         

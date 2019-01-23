@@ -1,6 +1,7 @@
 var app = angular.module('LoginApp', []);
 
-app.controller('ctrlLogin', function($scope,$http)
+
+app.controller('ctrlLogin', function($scope,$window,$location,$http)
 {    
     
     $scope.mostrarLogin = true;
@@ -27,11 +28,12 @@ app.controller('ctrlLogin', function($scope,$http)
                 data:user})
                 .then(function(respuesta){
                 if(respuesta.data){
-                    window.location.href="http:google.cl";
-                }else{
-                    $scope.mostrarError=true;
-                    $scope.mensaje="Rut o clave incorrectos";
+                    window.location.href="/vistacl.html"
                 }
+                else{
+                    $scope.mostrarError=true;
+                    $scope.mensaje="Rut o clave incorrectos";          
+                }      
             })
         
         }

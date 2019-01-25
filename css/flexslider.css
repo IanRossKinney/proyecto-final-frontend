@@ -1,0 +1,127 @@
+@font-face {
+    font-family: 'flexslider-icon';
+    src: url('fonts/flexslider-icon.eot');
+    src: url('fonts/flexslider-icon.eot?#iefix') format('embedded-opentype'), url('fonts/flexslider-icon.woff') 
+    format('woff'), url('fonts/flexslider-icon.ttf') format('truetype'), url('fonts/flexslider-icon.svg#flexslider-icon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  } /*ENLACE DE FUENTES DESCARGAS ALLI ENCONTRAREMOS LAS FLECHAS*/
+
+
+*{
+    margin: 0;
+    padding: 0;  /*NOS COLOCA TODO PEGADO AL LADO IZQUIERDO*/
+}
+
+.flexslider{ /*Nombre de la clase*/
+    width: 100%;
+    position: relative; /*Para elementos con un posicionamiento relativo, 
+                        el origen de sus coordenadas no es la esquina superior izquierda 
+                        del elemento contenedor, sino la posición que ocuparían naturalmente, 
+                        de no estar condicionados o posicionados.*/
+}
+.slides{ /*Nombre de la clase*/
+    overflow: hidden; /*NOS MUESTRA ELENTOS QUE SE OCULTARON POR MOVIMIENTO DE UNA IMAGEN POR EJEMPLO*/
+}
+
+.slides img{ /*Nombre de la clase seccion imagen*/
+    width: 50%; /*cambio de tamaño mi imagen*/
+    display:block;
+    margin:auto;
+    border-radius: 15px;
+}
+
+.slides,
+.flex-control-nav, /*NOMBRE QUE SE LE DA A LOS NUMEROS QUE CONTROLAS LAS IMAGENES*/
+.flex-direction-nav { /*NOMBRE QUE SE LE DA A LAS PALABRAS QUE CONTROLAS EL PASO DE LAS IMAGENES "NEXT-PREVIUS*/
+  margin: 0;       /*AQUI SE LE DA UN MARGEN A ESAS TRES CLASES*/
+  padding: 0;
+  list-style: none;
+}
+
+.flex-control-nav{ /*COLOCAMOS AL MEDIO DE LA PAG LOS NUMEROS*/
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 5%; /*mover 5 pixeles los botones hacia arriba*/
+    z-index: 999; /*que aparezcan los circulos que al posicionarlos mas arriba quedaron debajo de la imagen*/
+}
+.flex-control-nav li{ /*EL "LI" ES QUE CADA NUMERO ES UN "li"*/
+    display: inline-block; /*SE LES QUITA SU SALTO DE LINEA*/
+    margin: 0 6px; /*lOS COLOCAMOS UNO AL LADO DEL OTRO*/
+}
+.flex-control-nav li a{ /*ESTO ES TRANSFONDO DE LOS NUMERO*/
+    display: block; /*LE COLOCAMOS UN FONDO*/
+    background: #777777; /*Y UN COLOR*/
+    width: 12px;
+    height: 12px;
+    border-radius: 12px; /*CON ESTO MOLDEAMOS LA SOMBRA Y LA VOLVEMOS REDONDA*/
+    text-indent: -9999px; /*aquui desaparecemos los nuemeros*/
+}
+
+.flex-control-nav li a:hover{ /*contorneamos para que cuando pasemos el mause por el circulo se coloque mas oscuro*/
+    background: #2e2e2e;
+}
+.flex-control-nav li a.flex-active{ /*Esto es para que cuando la imagen se encuentre en el numero que corresponde el circulo se ponga mas oscura de color*/
+    background: #2e2e2e;
+}
+
+.flex-direction-nav a{ /*AHORA VAMOS CON EL PREVIUS Y NEXT*/
+    display: block;
+    text-decoration: none; /*AQUI QUITAMOS ALGUNA DECORACION QUE TENGA NUESTRO TEXTO, EN ESTE CASO EL UNDERLINE*/
+    position: absolute; /*La posición de las capas con “position:absolute” se fija mediante unas coordenadas, que vienen dadas por los atributos top y left. El punto inicial de estas coordenadas es la esquina superior izquierda de la caja que contiene los elementos.*/
+    margin: 0 345px;
+    top: 50%; /*posicionamiento*/
+    z-index: 999; /*QUE APAREZCA ENCIMA DE NUESTRA IMAGEN*/
+    width: 25px;
+    height: 40px; /*MUEVO EL POSICIONAMIENTO DE Los previu and next*/
+    overflow: hidden; /*escondo las letras*/
+    opacity: 0; /*desaparece la flecha*/
+    /*El siguiente codigo es para que las fechas aparezcan mas lento al momento de posicionar el mause sobre las fotos*/
+    -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.flex-direction-nav .flex-prev{ /*AQUI MANIPULAMOS EL PREVIUS*/
+    left: 0; /*LO MOVEMOS COMPLETAMENTE A LA IZQUIERDA*/
+}
+
+.flex-direction-nav .flex-next{ /*AQUI MANIPULAMOS EL NEXT*/
+    right: 0; /*LO MOVEMOS COMPLETAMENTE A LA DERECHA*/
+}
+
+.flex-direction-nav a:before {
+    font-family: "flexslider-icon";
+    font-size: 40px;
+    display: inline-block;
+    content: '\f001';
+    color: #fff;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+  }
+  .flex-direction-nav a.flex-next:before {
+    content: '\f002';
+    /*CON ESTE CODIGO (QUE NO SE ENTIENDE MUY BIEN) ESTAMOS LLAMANDO A LAS FLECHAS A COLOCARSE DE UN PAQUETE QUE YA TENIAMOS */
+  }
+
+  .flexslider:hover .flex-direction-nav .flex-prev{ /*Esta es la accion de posicionar el mouse arriba de algo*/
+    opacity: 0.7; 
+    left: 20px; /*cuando el mause se coloque sobre la imagen la flecha se movera la cantidad de megapixeles que elijas en el previus*/
+  }
+  .flexslider:hover .flex-direction-nav .flex-prev:hover{
+      opacity: 1; /*cuando el pause se posicione en la flecha de previus se vera con mas color*/
+  }
+  .flexslider:hover .flex-direction-nav .flex-next{ /*Esta es la accion de posicionar el mouse arriba de algo*/
+    opacity: 0.7;
+    right: 20px; /*cuando el mause se coloque sobre la imagen la flecha se movera la cantidad de megapixeles que elijas en el next*/
+  }
+  .flexslider:hover .flex-direction-nav .flex-next:hover{
+    opacity: 1; /*cuando el pause se posicione en la flecha de next se vera con mas color*/
+}
+  
+
+
+
+

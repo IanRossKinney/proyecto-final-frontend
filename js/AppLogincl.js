@@ -1,34 +1,35 @@
 var app = angular.module('LoginApp', []);
 
 
-app.controller('ctrlLogin', function($scope,$window,$location,$http)
+app.controller('ctrlLogin', function($scope,$window,$http)
 {    
     
-    $scope.mostrarLogin = true;
     $scope.mostrarError = false;
     $scope.mensaje = "";
     $scope.modelPass="";
     $scope.modelRut="";
 
-
-
     $scope.iniciarSesion = function(){
 
-        
-        if($scope.modelRut=="" || $scope.modelPass==""){
+        if($scope.modelRut==="" || $scope.modelPass===""){       //validacion de formulario
             $scope.mostrarError=true;
-            $scope.mensaje = "Ingrese datos";
-            
+            $scope.mensaje = "Ingrese datos";   
         }
         else{
-            var user=({ rutCliente:$scope.modelRut, password:$scope.modelPass });
+            var user=({ 
+                rutCliente:$scope.modelRut, 
+                password:$scope.modelPass 
+            });
             $http({
                 method:'POST', 
                 url:"http://localhost:8080/clientes/login",
                 data:user})
                 .then(function(respuesta){
                 if(respuesta.data){
-                    window.location.href="/vistacl.html"
+                    $window.sessionStorage["rutCliente"]=$scope.modelRut;
+                    console.log("Dato Guardado")
+                    window.location.href="vistacl.html"                      //redireccion a la pagina login 
+            
                 }
                 else{
                     $scope.mostrarError=true;

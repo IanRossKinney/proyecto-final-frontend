@@ -1,9 +1,8 @@
 var app = angular.module('LoginApp', []);
 
-app.controller('ctrlLogin', function($scope,$http)
+app.controller('ctrlLogin', function($scope,$http,$window)
 {    
     
-    $scope.mostrarLogin = true;
     $scope.mostrarError = false;
     $scope.mensaje = "";
     $scope.modelPass="";
@@ -29,17 +28,23 @@ app.controller('ctrlLogin', function($scope,$http)
                 url:"http://localhost:8080/empleados/login",
                 data:user})
                 .then(function(respuesta){
-                if(respuesta.data /*y rol ==1*/ ){
-                    //Abrir ventana admin
-                    window.location.href="http:google.cl";
-                }else if(respuesta.data/*y rol=2 */){
-                    //Abrir ventada vendedor
-                }
-                else{
+                    console.log(respuesta.data);
+                if(respuesta.data){
+                    var rol = respuesta.data.idRol;
+                    if(rol.idRol===1){
+                        $window.sessionStorage["rutAdmin"]=$scope.modelRut;
+                        window.location.href="vistaad.html";
+                    }
+                    else{
+                        $window.sessionStorage["rutVendedor"]=$scope.modelRut;
+                        window.location.href="vistave.html";
+                    }
+                
+                }else{
                     $scope.mostrarError=true;
                     $scope.mensaje="Rut o clave incorrectos";
                 }
-            })
+            });
         
         }
     };

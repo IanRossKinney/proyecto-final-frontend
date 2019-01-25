@@ -1,0 +1,8 @@
+input:valid, textarea:valid {
+    background:white;
+    border-radius: green, 10px;
+  }
+  input:invalid, textarea:invalid {
+    background:white;
+    border-radius: rgb(250, 57, 57), 10px; 
+  }

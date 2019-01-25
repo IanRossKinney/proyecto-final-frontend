@@ -1,7 +1,7 @@
 var app= angular.module('FormularioApp',[]);
 app.controller('ctrlRegistro', function($scope,$http)
 {
-    $scope.mostrarRegistro = true;
+    
     $scope.mostrarError = false;
     $scope.mensaje = "";
     $scope.rut = "";
@@ -31,7 +31,6 @@ app.controller('ctrlRegistro', function($scope,$http)
         }else if($scope.password != $scope.password2){
             $scope.mostrarError=true;
             $scope.mensaje="Las contraseñas no coinciden";
-            console.log("Error Claves")
         }
         else{
         
@@ -42,7 +41,8 @@ app.controller('ctrlRegistro', function($scope,$http)
             }).then(function(respuesta){
                 console.log(respuesta.data);
                 if(respuesta.data){
-                    window.location.href="http:google.cl";
+                   alert("Registrado correctamente, inicie sesion");
+                   window.location.href="home.html";
                 }else{
                     $scope.mostrarError=true;
                     $scope.mensaje="El rut o el email ya se encuentran registrados";

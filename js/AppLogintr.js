@@ -28,7 +28,7 @@ app.controller('ctrlLogin', function($scope,$http,$window)
                 url:"http://localhost:8080/empleados/login",
                 data:user})
                 .then(function(respuesta){
-                    console.log(respuesta.data);
+                   
                 if(respuesta.data){
                     var rol = respuesta.data.idRol;
                     if(rol.idRol===1){

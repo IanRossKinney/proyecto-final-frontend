@@ -11,7 +11,7 @@ app.controller('ctrlLogin', function($scope,$window,$http)
 
     $scope.iniciarSesion = function(){
 
-        if($scope.modelRut==="" || $scope.modelPass===""){       //validacion de formulario
+        if($scope.modelRut==="" || $scope.modelPass===""){    
             $scope.mostrarError=true;
             $scope.mensaje = "Ingrese datos";   
         }
@@ -26,10 +26,8 @@ app.controller('ctrlLogin', function($scope,$window,$http)
                 data:user})
                 .then(function(respuesta){
                 if(respuesta.data){
-                    $window.sessionStorage["rutCliente"]=$scope.modelRut;
-                    console.log("Dato Guardado")
-                    window.location.href="vistacl.html"                      //redireccion a la pagina login 
-            
+                    $window.sessionStorage["rutCliente"]=$scope.modelRut;                   
+                    window.location.href="vistacl.html"                     
                 }
                 else{
                     $scope.mostrarError=true;

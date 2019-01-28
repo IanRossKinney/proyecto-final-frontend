@@ -20,6 +20,7 @@ app.controller('ctrlCuadros', function($scope,$window,$http)
         $scope.mostrarcuadro4 = true;
         $scope.mostrarcuadro5 = true;
         $scope.mostrarcuadro6 = true;
+        $scope.mostrarcuadro7 = true;
         $scope.bienvenido = true;
 
     }
@@ -118,7 +119,7 @@ app.controller('ctrlCuadros', function($scope,$window,$http)
             $scope.mostrarError=true;
             $scope.mensaje="Ingrese todos los campos requeridos"
         }else{
-            
+            $scope.mostrarError=false;
             var horaDestinada=({
                 tipoHora:$scope.tipoHora,
                 fecha:$scope.fechaDestino,
@@ -131,8 +132,10 @@ app.controller('ctrlCuadros', function($scope,$window,$http)
                 data:horaDestinada
             }).then(function(respuesta){
                 if(respuesta.data){
+                    alert("Agendado correctamente")
                     console.log("Hora agendada correctamente");
                 }else{
+                    alert("La hora ya se encuentra designada")
                     console.log("La hora ya se encuentra designada");
                 }
             })

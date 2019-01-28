@@ -2,7 +2,7 @@
 <html ng-app="vistaVendedorApp">
 
 <head>
-    <title>Vendedor</title>
+    <title>Hour Sell/Vendedor</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" integrity="sha384-PmY9l28YgO4JwMKbTvgaS7XNZJ30MK9FAZjjzXtlqyZCqBY6X6bXIkM++IkyinN+"crossorigin="anonymous">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,15 +19,16 @@
             <div class="col-md-1">
                 <img src="imagenes/iconouser.png" width="100" height="100">
             </div>
-            <div class="col-md-10">
-                <br>
+            <br>
+            <div class="col-md-9">
+                
                 <li>Perfil Vendedor</li>
                 <li>Nombre: {{vendedor.nombre}} {{vendedor.apellido}}</li>
                 <li>Email:  {{vendedor.email}}</li>
                 <li>Ultimo Login: {{vendedor.ultimoLogin}}</li>
             </div>
-            <br><br><br>
-            <div>
+            <br>
+            <div class="col-md-1">
                 <h5><a class="btn btn-primary" href="home.html" role="button" ng-click="cierreSesion()">Cerrar sesión</a></h5>
             </div>
         </div>
@@ -38,27 +39,70 @@
         <div class="row">
             <div class="col-md-4 ">
                 <button type="button" class="btn btn-primary btn-block" ng-click="cuadro1()">Mi perfil</button>
-                <button type="button" class="btn btn-primary btn-block" ng-click="cuadro2()">Reporte hora</button>
+                <button type="button" class="btn btn-primary btn-block" ng-click="cuadro2();listarHoras()">Reporte horas</button>
                 <button type="button" class="btn btn-primary btn-block" ng-click="cuadro3();listarHoras()">Mis horas</button>
-                >
+                
             </div>
-            <div align="center"class="col-md-8" ng-hide="bienvenido">
+            <div align="center" class="col-md-8" ng-hide="bienvenido">
                 <img src="imagenes/bienvenido-png-2.png" alt="">
+                
             </div> 
-            <div align="right"class="col-md-8" style="background:palevioletred" ng-hide="mostrarcuadro1">
-                <h1>Mi perfil</h1>
+            
+            <div align="right"class="col-md-8" ng-hide="mostrarcuadro1">
+                <div align="left" class="col-md-6">
+                    <!--Perfil del Vendedor-->
+                    <h4>Nombre</h4>
+                    <input class="form-control" type="text" disabled value='{{vendedor.nombre}} {{vendedor.apellido}}'>
+                    <h4>E-mail</h4>
+                    <input class="form-control" type="text" disabled value='{{vendedor.email}}'>
+                    <h4>Rut Vendedor</h4>
+                    <input class="form-control" type="text" disabled value='{{vendedor.rutEmpleado}}'>
+                    <h4>Teléfono</h4>
+                    <input type="text" class="form-control" id="EditPhone" placeholder='{{vendedor.telefono}}'>
+                </div>
             </div> 
-            <div align="right"class="col-md-8" style="background:palevioletred" ng-hide="mostrarcuadro2">
-                <h1>Reporte Hora</h1>
+            <div align="right"class="col-md-8"  ng-hide="mostrarcuadro2">
+                <h4>V/T=Verificacion telefonica   A/C=Asistencia Cliente   N/A=No asiste</h4>
+                <table class="table">
+                    <thead style="background:rgb(82, 82, 236)">
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Tipo</th>
+                            <th>Estado</th>
+                            <th>V/T</th>
+                            <th>A/C</th>
+                            <th>N/A</th>
+                            
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="hora in horas | filter:q ">
+                        <td>{{hora.fecha}}</td>
+                        <td>{{hora.hora}}</td>
+                        <td>{{hora.tipoHora}}</td>
+                        <td>{{hora.estado}}</td>
+                        <td>
+                            <button class="btn btn-warning btn-xs" ng-click="confirmacionTelefonica(hora.idHora)">T</button>
+                       </td>  
+                       <td>
+                        <button class="btn btn-success btn-xs" ng-click="confirmacionAsistencia(hora.idHora)">A</button>
+                       </td>  
+                       <td>
+                        <button class="btn btn-danger btn-xs" ng-click="clienteNoAsiste(hora.idHora)">N</button>
+                   </td>  
+                                                           
+                    </tr>
+                </tbody>
+            </table>
             </div>
-            <div align="right"class="col-md-8" style="background:palevioletred" ng-hide="mostrarcuadro3">
+            <div align="right"class="col-md-8"  ng-hide="mostrarcuadro3">
                     <table class="table">
                             <thead style="background:rgb(82, 82, 236)">
                                 <tr>
                                     <th>Fecha</th>
                                     <th>Hora</th>
                                     <th>Tipo</th>
-                                    <th>Cliente</th>
                                     <th>Estado</th>
                                     
                             </tr>
@@ -68,7 +112,6 @@
                                 <td>{{hora.fecha}}</td>
                                 <td>{{hora.hora}}</td>
                                 <td>{{hora.tipoHora}}</td>
-                                <td>{{hora.rutCliente.nombre}} {{hora.rutCliente.apellido}} {{hora.rutCliente.rutCliente}}</td>
                                 <td>{{hora.estado}}</td>
                                                                    
                             </tr>

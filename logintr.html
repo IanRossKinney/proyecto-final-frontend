@@ -30,12 +30,12 @@
                 <form name="formLogin" novalidate>
                 <div class="form-group">
                     <label for="InputRUT">RUT</label>
-                    <input type="text" class="form-control" id="InputRUT" placeholder="Ej: 12.345.678-9"ng-model="modelRut" required>
+                    <input type="text" class="form-control" id="InputRUT" placeholder="Ej: 12.345.678-9"ng-model="modelRut" required value>
                 </div>
                 <!--PASSWORD-->
                 <div class="form-group">
                     <label for="InputPassword">Contraseña</label>
-                    <input type="password" class="form-control" id="inputPassword" placeholder="Contraseña" ng-model="modelPass" required>
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Contraseña" ng-model="modelPass" required value> 
                     <input type="checkbox" onchange="document.getElementById('inputPassword').type =this.checked ? 'text' : 'password'">Mostrar
                 </div>
                 

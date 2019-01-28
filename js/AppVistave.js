@@ -40,27 +40,77 @@ app.controller('ctrlCuadros', function($scope,$http,$window)
     }
 
     //Cuadro 1
-
+    /*Metodos para la modificacion de datos del perfil, aun no habilitados */      
 
 
 
 
     //Cuadro 2
+    $scope.confirmacionTelefonica=function(idHora){
+        var hor=({
+            idHora:idHora
+        })
+        $http({
+            method:'POST',
+            url:"http://localhost:8080/horas/confirmaciontelefonica",
+            data:hor
+        }).then(function(respuesta){
+            if(respuesta.data){
+                alert("Confirmado telefonicamente")
+                $scope.listarHoras();
+            }
+        })
+    }
+    $scope.confirmacionAsistencia=function(idHora){
+        var hor=({
+            idHora:idHora
+        })
+        $http({
+            method:'POST',
+            url:"http://localhost:8080/horas/confirmacionasistencia",
+            data:hor
+        }).then(function(respuesta){
+            if(respuesta.data){
+                alert("Cliente asiste")
+                $scope.listarHoras();
+            }
+        })
+    }
+    $scope.clienteNoAsiste=function(idHora){
+        var hor=({
+            idHora:idHora
+        })
+        $http({
+            method:'POST',
+            url:"http://localhost:8080/horas/clientenoasiste",
+            data:hor
+        }).then(function(respuesta){
+            if(respuesta.data){
+                alert("Cliente ausente")
+                $scope.listarHoras();
+            }
+        });
+
+        
+    }
 
 
 
 
-
-   // Cuadro 3         /*Operaciones informativas disabled*/
-   // $scope.listarHoras=function(){
-   //     $http({
-   //         method:'GET',
-   //         url:"http://localhost:8080/horas/listarhorasvendedor",
-   //         data:$scope.vendedor
-   //     }).then(function(respuesta){
-   //         $scope.horas=respuesta.data;
-   //    });
-   // }
+   // Cuadro 3      
+    $scope.listarHoras=function(){
+        var rut=($scope.vendedor.rutEmpleado)
+        var user=({
+            rutEmpleado:rut
+        })
+        $http({
+            method:'POST',
+            url:"http://localhost:8080/horas/listarhorasvendedor",
+            data:user
+        }).then(function(respuesta){
+            $scope.horas=respuesta.data;
+       });
+    }
     
 
 
@@ -90,6 +140,7 @@ app.controller('ctrlVendedor',function($scope,$window,$http){
     $scope.cierreSesion=function(){
         $window.sessionStorage["rutVendedor"]=undefinded;
     }
+   
 
     $scope.obtener();
 });

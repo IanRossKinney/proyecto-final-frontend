@@ -2,7 +2,7 @@
 <html ng-app="vistaAdApp">
     <head>
 
-    <title>Administrador</title>
+    <title>Hour Sell/Administrador</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" integrity="sha384-PmY9l28YgO4JwMKbTvgaS7XNZJ30MK9FAZjjzXtlqyZCqBY6X6bXIkM++IkyinN+" crossorigin="anonymous">
     <link rel="stylesheet" href="css/estilos.css">
     <meta charset="utf-8">
@@ -52,7 +52,7 @@
                 <img src="imagenes/bienvenido-png-2.png" alt="">
                 
             </div> 
-            <div align="center" class="col-md-8" ng-hide="bienvenido" style="background: orchid;border-radius:10px;">
+            <div align="center" class="col-md-8" ng-hide="bienvenido" style="background: green;border-radius:10px;">
                 
                     <p><h3><em>Aquí podra encontrar noticias relacionadas con las futuras actualizaciones de nuestro servicio</em></h3></p>
                     <p><h3>Lo mantendremos informado</h3></p>
@@ -67,7 +67,7 @@
                     <h4>Rut Admin</h4>
                     <input class="form-control" type="text" disabled value='{{administrador.rutEmpleado}}'>
                     <h4>Teléfono</h4>
-                    <input type="text" class="form-control" id="EditPhone" placeholder="+56987654321">
+                    <input type="text" class="form-control" id="EditPhone" placeholder='{{administrador.telefono}}'>
                 </div>
             </div> 
             <div align="right"class="col-md-8" style="background:rgb(142, 248, 199)" ng-hide="mostrarcuadro2">
@@ -82,21 +82,16 @@
                                         <option value="venta">Venta</option>
                                         <option value="post-venta">Post Venta</option>
                                     </select>
-                                </div> <br>
-                    
-                              
-                            
+                                </div> 
+                                <br>                                                 
                                 <div>
                                     <h5>Seleccione fecha</h5>
-                                    <input type="date" ng-model="fechaDestino" />
-            
-                                </div>
-                                <!--Boton HORAAA-->
+                                    <input type="date" ng-model="fechaDestino" />           
+                                </div>                               
                                 <br>
                                 <div>
                                     <h5 for="inputState">Horario</h5>
                                     <select id="inputState" class="form-control" style="width: 200px;" ng-model="horario">
-                                        <option selected >Horario</option>
                                         <option value="09:00:00">09:00</option>
                                         <option value="10:00:00">10:00</option>
                                         <option value="11:00:00">11:00</option>
@@ -133,8 +128,8 @@
                             <tr>
                                 <th>Fecha</th>
                                 <th>Hora</th>
-                                <th>Vendedor</th><!--rut-->
-                                <th>Cliente</th><!--rut-->
+                                <th>Vendedor</th>
+                                <th>Cliente</th>
                                 <th>Estado</th>
                                 
                         </tr>
@@ -147,7 +142,7 @@
                             <td>{{hora.rutCliente.nombre}} {{hora.rutCliente.apellido}} {{hora.rutCliente.rutCliente}}</td>
                             <td>{{hora.estado}}</td>
                             <td>
-                                 <button class="btn btn-danger btn-xs" ng-click="eliminar(hora)">Eliminar</button>
+                                 <button class="btn btn-danger btn-xs" ng-click="eliminar(hora)">X</button>
                             </td>                                    
                         </tr>
                     </tbody>
@@ -175,7 +170,7 @@
                                 <td>{{hora.rutCliente.nombre}} {{hora.rutCliente.apellido}} {{hora.rutCliente.rutCliente}}</td>
                                 <td>{{hora.estado}}</td>
                                 <td>
-                                     <button class="btn btn-danger btn-xs" ng-click="eliminar(hora)">Eliminar</button>
+                                     <button class="btn btn-danger btn-xs" ng-click="eliminar(hora)">X</button>
                                 </td>                                    
                             </tr>
                         </tbody>
@@ -192,11 +187,11 @@
                 </div>
                 <div class="form-group ng-binding">
                     <label for="InputNombre">Nombre</label>
-                    <input type="text" class="form-control" id="InputNombre" required pattern="[A-Za-z]{}" placeholder="Nombre" ng-model="nomEmp">
+                    <input type="text" class="form-control" id="InputNombre" placeholder="Nombre" ng-model="nomEmp" required value>
                 </div>
                 <div class="form-group">
                     <label for="InputApellido">Apellido</label>
-                    <input type="text" class="form-control" id="InputApellido" required pattern="[]" placeholder="Apellido" ng-model="apeEmp" >
+                    <input type="text" class="form-control" id="InputApellido" placeholder="Apellido" ng-model="apeEmp" required value>
                 </div>
                  <div class="form-group">    
                     <label for="InputEmail">E-mail</label>
@@ -239,7 +234,7 @@
                                <td>{{empleado.telefono}}</td>
                                <td>{{empleado.email}}</td>
                                <td>
-                                 <button class="btn btn-danger btn-xs" ng-click="eliminar(empleado)">Eliminar</button>
+                                 <button class="btn btn-danger btn-xs" ng-click="eliminar(empleado)">X</button>
                                </td>                                    
                        </tr>
                        </tbody>
@@ -266,7 +261,7 @@
                             <td>{{cliente.telefono}}</td>
                             <td>{{cliente.email}}</td>
                             <td>
-                           <button class="btn btn-danger btn-xs" ng-click="eliminar(cliente)">Eliminar</button>
+                           <button class="btn btn-danger btn-xs" ng-click="eliminar(cliente)">X</button>
                             </td>                                    
                     </tr>
                     </tbody>

@@ -51,21 +51,11 @@
                   <h1>Bienvenido</h1>
               </div> 
               <div align="right"class="col-md-8" style="background:rgb(142, 248, 199)" ng-hide="mostrarcuadro1">    
-                      <div class="container-fluid">
-                        <div>
-                            <h4>Nombre</h4>
-                            <input class="form-control" type="text" placeholder="" readonly>                            
-                            <h4>E-mail</h4>
-                            <input class="form-control" type="text" placeholder="ian.salinas.a@gmail.com" readonly>
-                            <h4>Teléfono</h4>
-                            <input type="text" class="form-control" id="EditPhone" placeholder="+56987654321" class="col-md-3">
-                        </div>
-                    </div>
+                      
               </div> 
-              <div align="right"class="col-md-8" style="background:rgb(142, 248, 199)" ng-hide="mostrarcuadro2">
+              <div align="right"class="col-md-4" style="background:rgb(142, 248, 199)" ng-hide="mostrarcuadro2">
                     <div class="container-fluid" align="center">
-                            <div class="row" style="background:white; border-radius:20px; max-width: 600px;">
-                    
+                            <div class="row" style="background:white; border-radius:20px; max-width: 600px;">                   
                                 <div>
                                     <h4>Agenda tu hora</h4>
                                     <br>
@@ -74,22 +64,16 @@
                                         <option value="venta">Venta</option>
                                         <option value="post-venta">Post Venta</option>
                                     </select>
-                                </div> <br>
-                    
-                                <!--TITULO-->
-                                <br>
+                                </div> 
+                                <br>                                                              
                                 <div>
                                     <h5>Seleccione fecha</h5>
-                                    <input  type="date" ng-model="fechaDestino">
-                                </div>
-                    
-                    
-                                <!--Boton HORAAA-->
+                                    <input  type="date" ng-model="fechaDestino"/>
+                                </div>                                                             
                                 <br>
                                 <div>
                                     <h5 for="inputState">Horario</h5>
-                                    <select id="inputState" class="form-control" style="width: 200px;" ng-model="horario">
-                                        <option >Horario</option>
+                                    <select id="inputState" class="form-control" style="width: 200px;" ng-model="horario">                                    
                                         <option value="09:00:00">09:00</option>
                                         <option value="10:00:00">10:00</option>
                                         <option value="11:00:00">11:00</option>
@@ -106,25 +90,35 @@
                                     <br>
                                     <button type="button" class="btn btn-info" ng-click="preferencia()">Consultar Preferencia</button>
                                 </div>
+                                <div class="bg-warning" style="padding:20px;" ng-show ="mostrarError" >
+                                        {{mensaje}}
+                        
+                                 </div>
+
+
                             </div>
                         </div>
               </div>
-              <div align="right"class="col-md-8" style="background:rgb(142, 248, 199)" ng-hide="mostrarcuadro3">
-                        <table  style="border:4px solid rgb(19, 207, 82);" class="table">
-          
+              <div align="right"class="col-md-4" style="background:rgb(143, 248, 199)" ng-hide="matchExitoso">
+                    <h4>Encontramos la hora que buscabas</h4>
+                    <table class="table">
                         <thead>
                             <tr>
-                              <th>Hora</th>
-                              <th>Vendedor</th>
-                              <th>Sucursal</th>
-                              <th>Tipo</th>
-                              <th></th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
                             </tr>
-                          </thead>
-                          <tbody>
-                           
-                          </tbody>
-                        </table>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="hora in preferencias ">
+                                <td>{{hora.fecha}}</td>
+                                <td>{{hora.hora}}</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+              </div>
+              <div align="right"class="col-md-8" style="background:rgb(142, 248, 199)" ng-hide="mostrarcuadro3">
+                       
               </div>        
           </div>    
       </div>   

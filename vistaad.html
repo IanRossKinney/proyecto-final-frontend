@@ -7,16 +7,17 @@
     <link rel="stylesheet" href="css/estilos.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>body {
-          background-image: url("https://wallpapertag.com/wallpaper/full/0/1/8/641241-gorgerous-mint-green-wallpapers-2000x1100-mobile.jpg");  
-          background-repeat: no-repeat;}
-    </style>
+    <style>
+            body{
+                background-image: url("file:///C:/Users/Administrator/Documents/proyecto-final-frontend/imagenes/textura-azul.jpg")
+            }
+        </style>
 </head>
 
 <body>
 
     <br>
-    <div class="container" style="background:rgb(123, 141, 240) ;border-radius: 10px;" ng-controller="ctrlAdmin">
+    <div class="container" style="background:rgb(255, 255, 255) ;border-radius: 10px;" ng-controller="ctrlAdmin">
         <div class="row">
             <div class="col-md-1">
                 <img src="imagenes/iconouser.png"  width="100" height="100">
@@ -40,19 +41,19 @@
         <div class="row">
             <div class="col-md-4 ">
                 <!--Botones de opciones-->
-                <button type="button" class="btn btn-success btn-block" ng-click="cuadro1()">Mi perfil</button>
-                <button type="button" class="btn btn-primary btn-block" ng-click="cuadro2()">Asignar Vendedor</button>
-                <button type="button" class="btn btn-primary btn-block" ng-click="cuadro3();listarHorasVenta()">Reporte de Horas: Venta</button>
-                <button type="button" class="btn btn-primary btn-block" ng-click="cuadro4();listarHorasPostVenta()">Reporte de Horas: Post-Venta</button>
-                <button type="button" class="btn btn-primary btn-block" ng-click="cuadro5()">Registrar nuevo vendedor</button>
-                <button type="button" class="btn btn-primary btn-block" ng-click="cuadro6();listarEmpleados()">Listar Trabajadores</button>
-                <button type="button" class="btn btn-primary btn-block" ng-click="cuadro7();listarClientes()">Listar Clientes</button>
+                <button type="button" class="btn btn-primary btn-block" ng-click="cuadro1()">Mi perfil</button>
+                <button type="button" class="btn btn-info btn-block" ng-click="cuadro2()">Asignar Vendedor</button>
+                <button type="button" class="btn btn-info btn-block" ng-click="cuadro3();listarHorasVenta()">Reporte de Horas: Venta</button>
+                <button type="button" class="btn btn-info btn-block" ng-click="cuadro4();listarHorasPostVenta()">Reporte de Horas: Post-Venta</button>
+                <button type="button" class="btn btn-info btn-block" ng-click="cuadro5()">Registrar nuevo vendedor</button>
+                <button type="button" class="btn btn-info btn-block" ng-click="cuadro6();listarEmpleados()">Listar Trabajadores</button>
+                <button type="button" class="btn btn-info btn-block" ng-click="cuadro7();listarClientes()">Listar Clientes</button>
             </div>
             <div align="center" class="col-md-8" ng-hide="bienvenido">
                 <img src="imagenes/bienvenido-png-2.png" alt="">
                 
             </div> 
-            <div align="center" class="col-md-8" ng-hide="bienvenido" style="background: green;border-radius:10px;">
+            <div align="center" class="col-md-8" ng-hide="bienvenido" style="background: white;border-radius:10px;">
                 
                     <p><h3><em>Aquí podra encontrar noticias relacionadas con las futuras actualizaciones de nuestro servicio</em></h3></p>
                     <p><h3>Lo mantendremos informado</h3></p>
@@ -70,7 +71,7 @@
                     <input type="text" class="form-control" id="EditPhone" placeholder='{{administrador.telefono}}'>
                 </div>
             </div> 
-            <div align="right"class="col-md-8" style="background:rgb(142, 248, 199)" ng-hide="mostrarcuadro2">
+            <div align="right"class="col-md-8"  ng-hide="mostrarcuadro2">
                     <div class="container-fluid" align="center">
                             <div class="row" style="background:white; border-radius:20px; max-width: 600px;">
                     

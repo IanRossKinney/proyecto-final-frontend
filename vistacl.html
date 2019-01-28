@@ -45,13 +45,13 @@
                   <button type="button" class="btn btn-primary btn-block" ng-click="cuadro2()">Agendar hora</button>
                   <button type="button" class="btn btn-primary btn-block" ng-click="cuadro3()">Listar mis horas</button>
               </div>
-              <div align="right"class="col-md-8" style="background:rgb(142, 248, 199)" ng-hide="bienvenido">
+              <div align="right"class="col-md-8" style="background:rgb(255, 255, 255)" ng-hide="bienvenido">
                   <h1>Bienvenido</h1>
               </div> 
-              <div align="right"class="col-md-8" style="background:rgb(142, 248, 199)" ng-hide="mostrarcuadro1">    
+              <div align="right"class="col-md-8" style="background:rgb(255, 255, 255)" ng-hide="mostrarcuadro1">    
                       
               </div> 
-              <div align="right"class="col-md-4" style="background:rgb(142, 248, 199)" ng-hide="mostrarcuadro2">
+              <div align="right"class="col-md-4" style="background:rgb(255, 255, 255)" ng-hide="mostrarcuadro2">
                     <div class="container-fluid" align="center">
                             <div class="row" style="background:white; border-radius:20px; max-width: 600px;">                   
                                 <div>
@@ -89,34 +89,73 @@
                                     <button type="button" class="btn btn-info" ng-click="preferencia()">Consultar Preferencia</button>
                                 </div>
                                 <div class="bg-warning" style="padding:20px;" ng-show ="mostrarError" >
-                                        {{mensaje}}
-                        
+                                        {{mensaje}}                       
                                  </div>
 
 
                             </div>
                         </div>
               </div>
-              <div align="right"class="col-md-4" style="background:rgb(143, 248, 199)" ng-hide="matchExitoso">
+              <div align="right"class="col-md-4" style="background:rgb(255, 255, 255)" ng-hide="matchExitoso">
                     <h4>Encontramos la hora que buscabas</h4>
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>Fecha</th>
                                 <th>Hora</th>
+                                <th>Reserva</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="hora in preferencias ">
                                 <td>{{hora.fecha}}</td>
                                 <td>{{hora.hora}}</td>
+                                <td>
+                                        <button class="btn btn-success btn-xs" ng-click="reservar(hora)">R</button>
+                                   </td> 
 
                             </tr>
                         </tbody>
                     </table>
               </div>
-              <div align="right"class="col-md-8" style="background:rgb(142, 248, 199)" ng-hide="mostrarcuadro3">
-                       
+              <div align="right"class="col-md-4" style="background:rgb(255, 255, 255)" ng-hide="matchError">
+                    <h4>No encontramos la hora que buscabas, pero tenemos estas horas disponibles</h4>
+                    
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Reserva</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="hora in preferencias ">
+                                <td>{{hora.fecha}}</td>
+                                <td>{{hora.hora}}</td>
+                                <td>
+                                        <button class="btn btn-success btn-xs" ng-click="reservar(hora)">R</button>
+                                   </td> 
+
+                            </tr>
+                        </tbody>
+                    </table>
+              </div>
+              <div align="right"class="col-md-8" style="background:rgb(255, 255, 255)" ng-hide="mostrarcuadro3">
+                   <table class="table">
+                        <thead>
+                            <th>Hora</th>
+                            <th>Fecha</th>
+                            <th>Rut</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>09:00</td>
+                                <td>2019-01-30</td>
+                                <td>{{cliente.rutCliente}}</td>
+                            </tr>
+                        </tbody>
+                   </table>    
               </div>        
           </div>    
       </div>   

@@ -28,13 +28,17 @@ app.controller('ctrlCuadro', function($scope,$window,$http)
    $scope.mostrarError=false; 
    $scope.mostrarcuadro1 = true;
    $scope.mostrarcuadro2 = true;
-   $scope.mostrarcuadro3 = true;   
+   $scope.mostrarcuadro3 = true; 
+   $scope.matchExitoso=true;
+   $scope.matchError=true;
    $scope.bienvenido = false;
 
    $scope.cuadro1 = function (){
        $scope.mostrarcuadro1=false;
        $scope.mostrarcuadro2=true;
        $scope.mostrarcuadro3=true;       
+       $scope.matchExitoso=true;
+       $scope.matchError=true;
        $scope.bienvenido=true;
 
    }
@@ -42,14 +46,17 @@ app.controller('ctrlCuadro', function($scope,$window,$http)
        $scope.mostrarcuadro1=true;
        $scope.mostrarcuadro2=false;
        $scope.mostrarcuadro3=true;     
+       $scope.matchExitoso=true;
+       $scope.matchError=true;
        $scope.bienvenido=true;
    }
    $scope.cuadro3 = function (){
        $scope.mostrarcuadro1=true;
        $scope.mostrarcuadro2=true;
        $scope.mostrarcuadro3=false;
-      
+       $scope.matchExitoso=true;      
        $scope.bienvenido=true;
+       $scope.matchError=true;
    }
 
   
@@ -63,6 +70,8 @@ app.controller('ctrlCuadro', function($scope,$window,$http)
        $scope.horario="";
        $scope.mostrarError=false;
        $scope.mensaje="";
+       $scope.matchExitoso=true;
+       $scope.matchError=true;
 
    $scope.preferencia=function(){
        
@@ -84,10 +93,12 @@ app.controller('ctrlCuadro', function($scope,$window,$http)
                if(respuesta.data.length==1){
                    $scope.preferencias=respuesta.data;
                    console.log($scope.preferencias)
+                   $scope.matchExitoso=false;
                }
-               else if(respuesta.data.length!=1){
+               else if(respuesta.data.length>1){
                    $scope.preferencias=respuesta.data
                    console.log($scope.preferencias)
+                   $scope.matchError=false;
                }else{
                    $scope.mostrarError=true;
                    $scope.mensaje="No se encontro la hora preferida\nPruebe con otra fecha";
@@ -95,6 +106,12 @@ app.controller('ctrlCuadro', function($scope,$window,$http)
                //REVISAR LA CONSULTA SQL EN EL BACKEND, DEVUELVE MAS DE UNA HORA
            });
        }
+    }
+
+
+
+       $scope.reservar=function(hora){
+        alert("Hora agendada")
    };
 
 
